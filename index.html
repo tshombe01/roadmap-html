@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap - Projet Kiné Bongi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #047857;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background: linear-gradient(120deg, rgba(37, 99, 235, 0.95) 0%, rgba(4, 120, 87, 0.95) 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        main {
+            padding: 3rem 0;
+        }
+
+        .roadmap-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Timeline vertical */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Phase cards */
+        .phase {
+            position: relative;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .phase.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .phase:nth-child(odd) .phase-card {
+            margin-left: 0;
+            margin-right: calc(50% + 40px);
+            transform-origin: right;
+        }
+
+        .phase:nth-child(even) .phase-card {
+            margin-left: calc(50% + 40px);
+            margin-right: 0;
+            transform-origin: left;
+        }
+
+        .phase-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transition: var(--transition);
+            border-left: 5px solid var(--primary);
+        }
+
+        .phase-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 30px;
+            right: -48px;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .phase:nth-child(even) .phase-card::before {
+            left: -48px;
+            right: auto;
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .phase-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .phase-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .phase-duration {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        .phase-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-out;
+        }
+
+        .phase-content.expanded {
+            max-height: 1000px;
+            transition: max-height 0.8s ease-in;
+        }
+
+        .phase-body {
+            padding: 20px 0;
+        }
+
+        .phase-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .actions-list {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .actions-list ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .actions-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .actions-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .deliverable {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(4, 120, 87, 0.05));
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .deliverable-title {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 5px;
+            font-size: 1.05rem;
+        }
+
+        .budget {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.2));
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid var(--accent);
+            font-weight: 600;
+            color: var(--accent);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 40px 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 6px;
+            width: 0%;
+            transition: width 1.5s ease-out;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .progress-percentage {
+            position: absolute;
+            top: -25px;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transform: translateX(50%);
+        }
+
+        /* Summary table */
+        .summary-section {
+            margin-top: 60px;
+        }
+
+        .summary-title {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            transition: var(--transition);
+            border-top: 5px solid var(--primary);
+        }
+
+        .summary-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .summary-card.phase-2 { border-top-color: #047857; }
+        .summary-card.phase-3 { border-top-color: #f59e0b; }
+        .summary-card.phase-4 { border-top-color: #7c3aed; }
+        .summary-card.phase-5 { border-top-color: #ec4899; }
+        .summary-card.phase-6 { border-top-color: #10b981; }
+
+        .summary-phase {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .summary-duration {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .summary-objective {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .summary-budget {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 968px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .phase:nth-child(odd) .phase-card,
+            .phase:nth-child(even) .phase-card {
+                margin-left: 80px !important;
+                margin-right: 0 !important;
+                transform-origin: left !important;
+            }
+
+            .phase-card::before {
+                left: -48px !important;
+                right: auto !important;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .phase-card {
+                padding: 20px;
+            }
+
+            .phase-title {
+                font-size: 1.3rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid white;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animation classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.2s; }
+        .animate-delay-2 { animation-delay: 0.4s; }
+        .animate-delay-3 { animation-delay: 0.6s; }
+        .animate-delay-4 { animation-delay: 0.8s; }
+        .animate-delay-5 { animation-delay: 1s; }
+        .animate-delay-6 { animation-delay: 1.2s; }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .badge-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content animate-fadeInUp">
+                <div class="logo">KINÉ <span>BONGI</span></div>
+                <p class="subtitle">Cité Moderne et Inclusive - Rocade Sud-Ouest, Kinshasa</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Mois</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Hectares</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Phases</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="roadmap-container">
+                <!-- Progress Bar -->
+                <div class="progress-container animate-fadeInUp animate-delay-1">
+                    <div class="progress-header">
+                        <span>Avancement du Projet</span>
+                        <span class="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="timeline">
+                    <!-- Phase 1 -->
+                    <div class="phase">
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <div class="phase-icon">
+                                    <i class="fas fa-landmark"></i>
+                                </div>
+                                <div class="phase-title">Phase 1: Sécurisation et Acquisition</div>
+                                <div class="phase-duration">Mois 1</div>
+                            </div>
+                            <div class="phase-content">
+                                <div class="phase-body">
+                                    <p class="phase-description">
+                                        Sécurisation juridique et physique du site pilote de 4 hectares à la Rocade Sud-Ouest.
+                                    </p>
+                                    <div class="actions-list">
+                                        <div class="section-title">
+                                            <i class="fas fa-tasks"></i> Actions Clés
+                                        </div>
+                                        <ul>
+                                            <li>Signature formelle du PV de négociation</li>
+                                            <li>Versement de l'avance de 14 000 USD et des 1 000 USD de frais techniques</li>
+                                            <li>Bornage, arpentage et sécurisation physique du site</li>
+                                            <li>Pose de plaques "Propriété Privée"</li>
+                                        </ul>
+                                    </div>
+                                    <div class="deliverable">
+                                        <div class="deliverable-title">
+                                            <i class="fas fa-trophy"></i> Livrable
+                                        </div>
+                                        <p>Titre d'occupation / Acte de vente initial</p>
+                                    </div>
+                                    <div class="budget">
+                                        <i class="fas fa-dollar-sign"></i> Budget estimé : 15 000 USD
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="phase">
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <div class="phase-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="phase-title">Phase 2: Capital Humain & Création</div>
+                                <div class="phase-duration">Mois 2-3</div>
+                            </div>
+                            <div class="phase-content">
+                                <div class="phase-body">
+                                    <p class="phase-description">
+                                        Constitution d'une équipe technique de haut niveau pour piloter le projet.
+                                    </p>
+                                    <div class="actions-list">
+                                        <div class="section-title">
+                                            <i class="fas fa-tasks"></i> Actions Clés
+                                        </div>
+                                        <ul>
+                                            <li>Lancement d'un concours pour recruter les meilleurs stagiaires (Ingénieurs BTP, Architectes, Designers)</li>
+                                            <li>Installation d'un bureau de projet temporaire sur site</li>
+                                            <li>Briefing technique avec les partenaires Égyptiens</li>
+                                            <li>Alignement des standards techniques internationaux</li>
+                                        </ul>
+                                    </div>
+                                    <div class="deliverable">
+                                        <div class="deliverable-title">
+                                            <i class="fas fa-trophy"></i> Livrable
+                                        </div>
+                                        <p>Équipe technique constituée (5 à 8 profils de haut niveau)</p>
+                                    </div>
+                                    <div class="budget">
+                                        <i class="fas fa-dollar-sign"></i> Budget estimé : 3 000 - 5 000 USD
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="phase">
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <div class="phase-icon">
+                                    <i class="fas fa-drafting-compass"></i>
+                                </div>
+                                <div class="phase-title">Phase 3: Études Techniques & Maquettage</div>
+                                <div class="phase-duration">Mois 4-6</div>
+                            </div>
+                            <div class="phase-content">
+                                <div class="phase-body">
+                                    <p class="phase-description">
+                                        Conception architecturale complète et modélisation 3D du futur site Kiné Bongi.
+                                    </p>
+                                    <div class="actions-list">
+                                        <div class="section-title">
+                                            <i class="fas fa-tasks"></i> Actions Clés
+                                        </div>
+                                        <ul>
+                                            <li>Études de sol et levés topographiques détaillés</li>
+                                            <li>Conception des plans architecturaux et modélisation 3D</li>
+                                            <li>Design des infrastructures (écoles, parcs, terrains de sport)</li>
+                                            <li>Optimisation des espaces verts et circulations</li>
+                                        </ul>
+                                    </div>
+                                    <div class="deliverable">
+                                        <div class="deliverable-title">
+                                            <i class="fas fa-trophy"></i> Livrable
+                                        </div>
+                                        <p>Plans d'exécution et maquette numérique 3D haute définition (4K)</p>
+                                    </div>
+                                    <div class="budget">
+                                        <i class="fas fa-dollar-sign"></i> Budget estimé : 7 000 - 10 000 USD
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div class="phase">
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <div class="phase-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="phase-title">Phase 4: Validation, Budgétisation & Partenariats</div>
+                                <div class="phase-duration">Mois 7-8</div>
+                            </div>
+                            <div class="phase-content">
+                                <div class="phase-body">
+                                    <p class="phase-description">
+                                        Finalisation du business plan et sécurisation des financements pour le démarrage des travaux.
+                                    </p>
+                                    <div class="actions-list">
+                                        <div class="section-title">
+                                            <i class="fas fa-tasks"></i> Actions Clés
+                                        </div>
+                                        <ul>
+                                            <li>Présentation officielle des maquettes aux autorités et partenaires financiers Américains</li>
+                                            <li>Établissement du budget global de construction (Bill of Quantities)</li>
+                                            <li>Détermination des prix de vente par unité (VEFA)</li>
+                                            <li>Validation des permis de construire</li>
+                                        </ul>
+                                    </div>
+                                    <div class="deliverable">
+                                        <div class="deliverable-title">
+                                            <i class="fas fa-trophy"></i> Livrable
+                                        </div>
+                                        <p>Business Plan finalisé et Budget de construction validé</p>
+                                    </div>
+                                    <div class="budget">
+                                        <i class="fas fa-dollar-sign"></i> Budget estimé : Frais de bureau et déplacements
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 5 -->
+                    <div class="phase">
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <div class="phase-icon">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                                <div class="phase-title">Phase 5: Marketing Digital & Expérience Client</div>
+                                <div class="phase-duration">Mois 9-10</div>
+                            </div>
+                            <div class="phase-content">
+                                <div class="phase-body">
+                                    <p class="phase-description">
+                                        Lancement de la plateforme de visite virtuelle et campagne de communication ciblée.
+                                    </p>
+                                    <div class="actions-list">
+                                        <div class="section-title">
+                                            <i class="fas fa-tasks"></i> Actions Clés
+                                        </div>
+                                        <ul>
+                                            <li>Développement de la plateforme de Visite Virtuelle immersive (4K)</li>
+                                            <li>Lancement de la campagne de communication (Réseaux sociaux, médias locaux)</li>
+                                            <li>Mise en place de la billetterie pour visites virtuelles payantes</li>
+                                            <li>Création d'un sentiment d'exclusivité et de pré-lancement</li>
+                                        </ul>
+                                    </div>
+                                    <div class="deliverable">
+                                        <div class="deliverable-title">
+                                            <i class="fas fa-trophy"></i> Livrable
+                                        </div>
+                                        <p>Plateforme de visite virtuelle opérationnelle et campagne lancée</p>
+                                    </div>
+                                    <div class="budget">
+                                        <i class="fas fa-dollar-sign"></i> Budget estimé : 5 000 USD
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 6 -->
+                    <div class="phase">
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <div class="phase-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div class="phase-title">Phase 6: Lancement Commercial & Ventes</div>
+                                <div class="phase-duration">Mois 11-12</div>
+                            </div>
+                            <div class="phase-content">
+                                <div class="phase-body">
+                                    <p class="phase-description">
+                                        Ouverture officielle des réservations et encaissement des premiers acomptes.
+                                    </p>
+                                    <div class="actions-list">
+                                        <div class="section-title">
+                                            <i class="fas fa-tasks"></i> Actions Clés
+                                        </div>
+                                        <ul>
+                                            <li>Ouverture officielle des réservations (Ventes sur plan - VEFA)</li>
+                                            <li>Signature des premiers contrats de réservation</li>
+                                            <li>Encaissement des premiers acomptes (20-30%)</li>
+                                            <li>Préparation du démarrage des travaux lourds</li>
+                                        </ul>
+                                    </div>
+                                    <div class="deliverable">
+                                        <div class="deliverable-title">
+                                            <i class="fas fa-trophy"></i> Livrable
+                                        </div>
+                                        <p>Carnet de commandes rempli et financement des travaux sécurisé</p>
+                                    </div>
+                                    <div class="budget">
+                                        <i class="fas fa-dollar-sign"></i> Objectif : Rentabilisation du projet
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Section -->
+                <div class="summary-section">
+                    <h2 class="summary-title animate-fadeInUp">Synthèse du Projet <span style="color: var(--accent);">Kiné Bongi</span></h2>
+                    <div class="summary-grid">
+                        <div class="summary-card animate-fadeInUp animate-delay-1">
+                            <div class="summary-phase">Phase 1</div>
+                            <div class="summary-duration">1 mois</div>
+                            <div class="summary-objective">Sécuriser le terrain</div>
+                            <div class="summary-budget">15 000 USD</div>
+                        </div>
+                        <div class="summary-card phase-2 animate-fadeInUp animate-delay-2">
+                            <div class="summary-phase">Phase 2</div>
+                            <div class="summary-duration">2 mois</div>
+                            <div class="summary-objective">Recruter l'expertise</div>
+                            <div class="summary-budget">5 000 USD</div>
+                        </div>
+                        <div class="summary-card phase-3 animate-fadeInUp animate-delay-3">
+                            <div class="summary-phase">Phase 3</div>
+                            <div class="summary-duration">3 mois</div>
+                            <div class="summary-objective">Créer la maquette 3D</div>
+                            <div class="summary-budget">10 000 USD</div>
+                        </div>
+                        <div class="summary-card phase-4 animate-fadeInUp animate-delay-4">
+                            <div class="summary-phase">Phase 4</div>
+                            <div class="summary-duration">2 mois</div>
+                            <div class="summary-objective">Budgétisation totale</div>
+                            <div class="summary-budget">Frais de bureau</div>
+                        </div>
+                        <div class="summary-card phase-5 animate-fadeInUp animate-delay-5">
+                            <div class="summary-phase">Phase 5</div>
+                            <div class="summary-duration">2 mois</div>
+                            <div class="summary-objective">Visites virtuelles</div>
+                            <div class="summary-budget">5 000 USD</div>
+                        </div>
+                        <div class="summary-card phase-6 animate-fadeInUp animate-delay-6">
+                            <div class="summary-phase">Phase 6</div>
+                            <div class="summary-duration">2 mois</div>
+                            <div class="summary-objective">Lancer la VEFA</div>
+                            <div class="summary-budget">Rentabilisation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Prêt à construire l'avenir de Kinshasa ?</h2>
+            <p class="cta-subtitle">
+                Rejoignez-nous dans cette aventure exceptionnelle pour créer la première cité moderne et inclusive de la Rocade Sud-Ouest.
+            </p>
+            <a href="#" class="btn">
+                <i class="fas fa-download"></i> Télécharger la Roadmap PDF
+            </a>
+            <a href="#" class="btn btn-outline">
+                <i class="fas fa-envelope"></i> Nous Contacter
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">KINÉ <span>BONGI</span></div>
+                <p>Promoteurs : M. Christian DIKIZEYIKO & M. Bijoux BOSUKU</p>
+                <p class="copyright">
+                    &copy; 2026 Projet Kiné Bongi - Tous droits réservés
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Phase toggle functionality
+        document.querySelectorAll('.phase-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const card = this.parentElement;
+                
+                content.classList.toggle('expanded');
+                card.style.borderLeftColor = content.classList.contains('expanded') ? '#047857' : '#2563eb';
+                
+                // Smooth scroll to show content
+                if (content.classList.contains('expanded')) {
+                    const cardRect = card.getBoundingClientRect();
+                    const offset = window.pageYOffset + cardRect.top - 100;
+                    window.scrollTo({
+                        top: offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.phase').forEach(phase => {
+            observer.observe(phase);
+        });
+
+        // Progress bar animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const progressBar = document.querySelector('.progress-fill');
+                const percentage = document.querySelector('.progress-percentage');
+                
+                // Simulate progress (you can adjust this based on actual project status)
+                const targetProgress = 8; // 8% for Phase 1 completion
+                let currentProgress = 0;
+                
+                const interval = setInterval(() => {
+                    if (currentProgress >= targetProgress) {
+                        clearInterval(interval);
+                        return;
+                    }
+                    currentProgress++;
+                    progressBar.style.width = currentProgress + '%';
+                    percentage.textContent = currentProgress + '%';
+                }, 30);
+            }, 500);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle (if needed)
+        function setupMobileOptimization() {
+            // Add touch-friendly features
+            const phases = document.querySelectorAll('.phase-card');
+            phases.forEach(phase => {
+                phase.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(1.01)';
+                });
+                phase.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', setupMobileOptimization);
+    </script>
+</body>
+</html>
